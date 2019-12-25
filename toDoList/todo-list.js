@@ -28,18 +28,21 @@ var creatToDoItem = function(e) {
 
 var doneItem = function(e) {
   var spanNode = e.target.parentNode;
-  if(e.target.checked) {
-    spanNode.className = "done";   
-    e.target.nextSibling.className = "done";
-    storage.setItem(spanNode.parentNode.id, "<span class='done'>" + spanNode.parentNode.id + 
-                    ".<input type='checkbox' checked>" + "<p class='done'>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
-  }
-  else {
-    e.target.parentNode.className = "";
-    e.target.nextSibling.className = "";
-    storage.setItem(spanNode.parentNode.id, "<span>" + spanNode.parentNode.id + 
-                    ".<input type='checkbox'>" + "<p>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
-  }
+    if (e.target.tagName === 'INPUT') {
+      console.log(e.target.tagName);
+      if(e.target.checked) {
+        spanNode.className = "done";   
+        e.target.nextSibling.className = "done";
+        storage.setItem(spanNode.parentNode.id, "<span class='done'>" + spanNode.parentNode.id + 
+                        ".<input type='checkbox' checked>" + "<p class='done'>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
+      }
+      else {
+        spanNode.className = "";
+        e.target.nextSibling.className = "";
+        storage.setItem(spanNode.parentNode.id, "<span>" + spanNode.parentNode.id + 
+                        ".<input type='checkbox'>" + "<p>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
+      }
+    }
 }
 
 var selectShowItem = function(e) {
@@ -72,11 +75,12 @@ var selectShowItem = function(e) {
           liSpan[i].style.display = "none";
         }
       }  
+    default: 
+      break;  
   }
 }
 //获取storage中的数据，初始化列表
 for (var i = 0, len = storage.length; i < len; i++) {
-  console.log(len);
   var li = document.createElement("li");
   var index = toDoList.children.length + 1;
   var key = i + 1;
