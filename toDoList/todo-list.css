@@ -1,0 +1,96 @@
+* {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ccc;
+}
+
+.container {
+  width: 500px;
+  height: auto;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.main {
+  width: 100%;
+  padding: 10px 40px;
+}
+
+.main h1 {
+  margin: 10px 0;
+}
+
+.main p {
+  margin-bottom: 10px;
+}
+
+.todo-des {
+  width: 300px;
+}
+
+#add {
+  width: 50px;
+  margin-left: 3px;
+  color: #fff;
+  line-height: 22px;
+  background-color: #fc999c;
+  border: 0;
+  border-radius: 3px;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
+#todo-list {
+  width: 80%;
+  padding: 20px 0;
+}
+
+#todo-list li:nth-child(even) {
+  background-image: url(./li-backroundcolor.jpg);
+  background-repeat: no-repeat;
+  background-position: 18px 0;
+}
+
+#todo-list li {
+  line-height: 40px;
+}
+
+#todo-list p {
+  display: inline-block;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+#todo-list input {
+  margin: 0 10px;
+}
+
+.btn-list {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-list button {
+  line-height: 22px;
+  border: 1px solid transparent;
+  background-color: #fff;
+  color: #fc999c;
+  margin: 0 20px;
+  padding: 0 10px;
+}
+
+.btn-list button:hover {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
