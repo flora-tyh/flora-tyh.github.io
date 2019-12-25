@@ -14,7 +14,7 @@ var creatToDoItem = function(e) {
       var index = toDoList.children.length + 1;
       li.innerHTML = "<span>" + index + ".<input type='checkbox'>" + 
                      "<p>" + toDoDes.value + "</P></span>";
-      if (e.target.name === "complete") {
+      if (add.name === "complete") {
         li.firstChild.style.display = "none";
       }
       toDoList.appendChild(li);
