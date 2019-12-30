@@ -32,20 +32,15 @@ window.ajax = function (options) {
   //5.调用send()方法
   switch (options.method) {
     case "POST":
+    case "PUT":
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(JSON.stringify(options.data));
       break;
-    case "GET":
-      xhr.send(null);  
-      break;
-    case "PUT": 
-      xhr.setRequestHeader("Content-type","application/json");
-      xhr.send(JSON.stringify(options.data));
-      break;
+    case "GET":  
     case "DELETE":
       xhr.send(null);  
       break;
     default:
-      break;  
+      console.log("不支持的请求方法")  
   }
 }
