@@ -62,7 +62,7 @@ body {
   display: inline-block;
 }
 
-.done {
+.checked {
   text-decoration: line-through;
   color: #ccc;
 }

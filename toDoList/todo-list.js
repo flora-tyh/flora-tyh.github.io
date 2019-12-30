@@ -6,12 +6,16 @@ var storage = window.localStorage;
 var done = document.getElementsByClassName("done");
 var btnList = document.getElementsByClassName("btn-list")[0];
 var liSpan = toDoList.getElementsByTagName("span");
+var toDoListJson = [];
+var index = 1;
 
 var creatToDoItem = function(e) {
   if (e.target.id === "add" || e.keyCode === 13) {
     if (toDoDes.value) {
       var li = document.createElement("li");
-      var index = toDoList.children.length + 1;
+      if (storage.toDoListData) {
+        index = JSON.parse(storage.toDoListData).length;
+      }
       li.innerHTML = "<span>" + index + ".<input type='checkbox'>" + 
                      "<p>" + toDoDes.value + "</P></span>";
       if (add.name === "complete") {
@@ -19,8 +23,11 @@ var creatToDoItem = function(e) {
       }
       toDoList.appendChild(li);
       li.id = index;
-      storage.setItem(li.id, "<span>" + index + ".<input type='checkbox'>" + 
-                      "<p>" + toDoDes.value + "</P></span>");
+      toDoListJson[index] = {};
+      toDoListJson[index].index = index;
+      toDoListJson[index].des = toDoDes.value;
+      toDoListJson[index].checked = "";
+      storage.setItem("toDoListData", JSON.stringify(toDoListJson));
       toDoDes.value = "";
     }
   }
@@ -29,67 +36,57 @@ var creatToDoItem = function(e) {
 var doneItem = function(e) {
   var spanNode = e.target.parentNode;
     if (e.target.tagName === 'INPUT') {
-      console.log(e.target.tagName);
       if(e.target.checked) {
-        spanNode.className = "done";   
-        e.target.nextSibling.className = "done";
-        storage.setItem(spanNode.parentNode.id, "<span class='done'>" + spanNode.parentNode.id + 
-                        ".<input type='checkbox' checked>" + "<p class='done'>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
+        spanNode.className = "checked";   
+        e.target.nextSibling.className = "checked";
+        toDoListJson[spanNode.parentNode.id].checked = "checked"
+        storage.setItem("toDoListData", JSON.stringify(toDoListJson));
       }
       else {
         spanNode.className = "";
         e.target.nextSibling.className = "";
-        storage.setItem(spanNode.parentNode.id, "<span>" + spanNode.parentNode.id + 
-                        ".<input type='checkbox'>" + "<p>" + spanNode.children[1].innerHTML + "</p>" + "</span>");
+        toDoListJson[spanNode.parentNode.id].checked = ""
+        storage.setItem("toDoListData", JSON.stringify(toDoListJson));
       }
     }
 }
 
 var selectShowItem = function(e) {
-  var len = liSpan.length;
   switch (e.target.id) {
     case "all":
-      add.name = "";
-      for (var i = 0; i < len; i++) {
-          liSpan[i].style.display = "block";
-      };
+      showList("all");
       break;
     case "active":  
       add.name = "";
-      for (var i = 0; i < len; i++) {
-        if (liSpan[i].className === "done") {
-          liSpan[i].style.display = "none";
-        }
-        else {
-          liSpan[i].style.display = "block";
-        }
-      }
+      showList("");
       break;
     case "complete":
       add.name = "complete";  
-      for (var i = 0; i < len; i++) {
-        if (liSpan[i].className === "done") {
-          liSpan[i].style.display = "block";
-        }
-        else {
-          liSpan[i].style.display = "none";
-        }
-      }  
-    default: 
-      break;  
+      showList("checked");
+      break
+    default:  
   }
 }
 //获取storage中的数据，初始化列表
-for (var i = 0, len = storage.length; i < len; i++) {
-  var li = document.createElement("li");
-  var index = toDoList.children.length + 1;
-  var key = i + 1;
-  var val = storage[key];
-  li.innerHTML = val;
-  toDoList.appendChild(li);
-  li.id = index;
+var showList = function(btn) {
+  if (storage.toDoListData) {
+    toDoList.innerHTML = "";
+    for (var i = 0, len = JSON.parse(storage.toDoListData).length - 1; i < len; i++) {
+      var li = document.createElement("li");
+      toDoListJson = JSON.parse(storage.toDoListData);
+      li.innerHTML = "<span class=" + toDoListJson[i+1].checked + ">" 
+                    + toDoListJson[i+1].index + ".<input type='checkbox'"
+                    + toDoListJson[i+1].checked +"><p>" + toDoListJson[i+1].des 
+                    + "</p></span>"
+      if (btn === "all" || toDoListJson[i+1].checked === btn) {
+        toDoList.appendChild(li);
+        toDoListJson[i+1].checked;
+      }
+      li.id = toDoListJson[i+1].index;
+    }
+  }
 }
-
+showList("all");
 document.addEventListener("click", creatToDoItem);
 document.addEventListener("keydown", creatToDoItem);
 toDoList.addEventListener("click", doneItem);
