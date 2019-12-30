@@ -17,8 +17,7 @@ window.ajax = function (options) {
   //2.监听onreadystatechange事件
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
-        if (xhr.status >= 200 && xhr.status < 300 ||
-            xhr.status === 304){
+        if (xhr.status == 200 || xhr.status == 201){
           options.success(JSON.parse(xhr.responseText));
         }
         else {
@@ -31,13 +30,13 @@ window.ajax = function (options) {
   //4.设置请求头部
   //5.调用send()方法
   switch (options.method) {
-    case "POST":
+    case "POST": 
     case "PUT":
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(JSON.stringify(options.data));
       break;
-    case "GET":  
-    case "DELETE":
+    case "GET": 
+    case "DELETE":  
       xhr.send(null);  
       break;
     default:
