@@ -5,7 +5,6 @@ var itemSelect = "";
 var sum = 0;
 var sumAfterCutsix = 0;
 var sumAfterHalfCut = 0;
-var halfCutactivityItmes = {};
 var halfCutItmes = [];
 var halfCutPrice = 0;
 var totalSum = 0;
@@ -40,14 +39,9 @@ var cutSix = function() {
 }
 
 var halfCut = function() {
-  for (let i = 0, len = promotions[1].items.length; i < len; i++) {
-    if (!halfCutactivityItmes[promotions[1].items[i]]) {
-      halfCutactivityItmes[promotions[1].items[i]] = 1;
-    }
-  }
   sumAfterHalfCut = sum;
   for (let i = 0, len = itemName.length; i < len; i++) {
-    if (halfCutactivityItmes[itemId[i]]) {
+    if (promotions[1].items.indexOf(itemId[i]) !== -1) {
       sumAfterHalfCut -= itemQuantity[i] * itemPrice[i] / 2;
       halfCutItmes.push(itemName[i])
     }
