@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <header class="tasking-title">
+      <div id="all">
+          <p class="tasking-name">所有任务</p>    
+          <p class="real-time">实时</p>    
+          <p class="tasking-number">3341</p>
+          <p class="tasking-percent">10%</p>
+        <span class="iconfont">&#xe60c;</span>
+      </div>
+      <div id="active">
+          <p class="tasking-name">未解决</p>    
+          <p class="real-time">实时</p>    
+          <p class="tasking-number">2305</p>
+          <p class="tasking-percent">10%</p>
+        <span class="iconfont">&#xe651;</span>
+      </div>
+      <div id="pending">
+          <p class="tasking-name">处理中</p>    
+          <p class="real-time">实时</p>    
+          <p class="tasking-number">384</p>
+          <p class="tasking-percent">10%</p>
+        <span class="iconfont">&#xe615;</span>
+      </div>
+      <div id="closed">
+          <p class="tasking-name">已解决</p>    
+          <p class="real-time">实时</p>    
+          <p class="tasking-number">1152</p>
+          <p class="tasking-percent">10%</p>
+        <span class="iconfont">&#xe614;</span>
+      </div>
+    </header>
+    <section class="project-list">
+      <table width="100%">
+        <caption>项目列表</caption>
+        <thead>
+          <th width="20%">项目名称</th>
+          <th width="50%">项目描述</th>
+          <th width="10%">截止时间</th>
+          <th width="10%">状态</th>
+          <th width="10%">操作</th>
+        </thead>
+        <tr>
+          <td>react-native</td>
+          <td title="11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用"><span class="hidden-over-two-row">11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用</span></td>
+          <td>2018-12-01</td>
+          <td>ACTIVE</td>
+          <td><button class="delete">删除</button></td>
+        </tr>
+      </table>
+    </section>
+  </div>
+<script src="./ajax.js"></script> 
+<script src="./index.js"></script> 
+</body>
+</html>

@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('./iconfont/iconfont.eot');
+  src: url('./iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('./iconfont/iconfont.woff2') format('woff2'),
+      url('./iconfont/iconfont.woff') format('woff'),
+      url('./iconfont/iconfont.ttf') format('truetype'),
+      url('./iconfont/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  margin: 10px;
+}
+
+.tasking-title {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tasking-title > div {
+  position: relative;
+  height: 80%;
+  margin: 10px;
+  padding: 20px;
+  flex-grow: 1;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.tasking-title .tasking-word {
+  position: relative;
+}
+
+.tasking-title #all {
+  background-color: #31b48d;
+}
+
+.tasking-title #active {
+  background-color: #38a1f2;
+}
+
+.tasking-title #pending {
+  background-color: #7538c7;
+}
+
+.tasking-title #closed {
+  background-color: #3b67a4;
+}
+
+.tasking-title .iconfont {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 100px;
+  opacity: .3;
+}
+
+.tasking-title .tasking-name {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 14px;
+}
+
+.tasking-title .tasking-number {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  font-size: 32px;
+}
+
+.tasking-title .real-time {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.tasking-title .tasking-percent {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 32px;
+}
+
+.project-list {
+  margin: 20px 10px;
+  text-align: left;
+}
+
+.project-list table {
+  border-collapse: collapse; 
+  padding-left: 5px;
+}
+
+.project-list caption {
+  margin: 10px 0 30px 0;
+  font-size: 25px;
+  text-align: left;
+}
+
+.project-list thead {
+  line-height: 60px;
+  font-size: 20px;
+  color: #333;
+  background-color: #EBECF0;
+  border-bottom: 1px solid #DCDEE3;
+}
+
+.project-list th,
+.project-list td {
+  height: 70px;
+  padding-left: 18px;
+  border-bottom: 1px solid #DCDEE3;
+}
+
+.hidden-over-two-row {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.project-list .delete {
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #ee706d;
+  color: #fff;
+  border: 0;
+}
