@@ -113,6 +113,7 @@
       case "back iconfont":
       case "cancel":  
         document.getElementById("delete-mask").style.display = "none";
+        document.getElementsByTagName("body")[0].className = "";
         break;
       case "comfirm":
         deleteItemData(deleteId);
