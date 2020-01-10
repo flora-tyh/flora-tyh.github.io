@@ -13,28 +13,27 @@
       <div id="all">
           <p class="tasking-name">所有任务</p>    
           <p class="real-time">实时</p>    
-          <p class="tasking-number">3341</p>
-          <p class="tasking-percent">10%</p>
+          <p class="tasking-number">0</p>
         <span class="iconfont">&#xe60c;</span>
       </div>
       <div id="active">
           <p class="tasking-name">未解决</p>    
           <p class="real-time">实时</p>    
-          <p class="tasking-number">2305</p>
+          <p class="tasking-number">0</p>
           <p class="tasking-percent">10%</p>
         <span class="iconfont">&#xe651;</span>
       </div>
       <div id="pending">
           <p class="tasking-name">处理中</p>    
           <p class="real-time">实时</p>    
-          <p class="tasking-number">384</p>
+          <p class="tasking-number">0</p>
           <p class="tasking-percent">10%</p>
         <span class="iconfont">&#xe615;</span>
       </div>
       <div id="closed">
           <p class="tasking-name">已解决</p>    
           <p class="real-time">实时</p>    
-          <p class="tasking-number">1152</p>
+          <p class="tasking-number">0</p>
           <p class="tasking-percent">10%</p>
         <span class="iconfont">&#xe614;</span>
       </div>
@@ -49,16 +48,32 @@
           <th width="10%">状态</th>
           <th width="10%">操作</th>
         </thead>
-        <tr>
-          <td>react-native</td>
-          <td title="11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用"><span class="hidden-over-two-row">11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用</span></td>
-          <td>2018-12-01</td>
-          <td>ACTIVE</td>
-          <td><button class="delete">删除</button></td>
-        </tr>
+        <tbody id="project-table">
+          <tr>
+            <td>react-native</td>
+            <td title="11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用"><span class="hidden-over-two-row">11111111111111111111111111这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用</span></td>
+            <td>2018-12-01</td>
+            <td>ACTIVE</td>
+            <td><button class="delete">删除</button></td>
+          </tr>
+        </tbody>
       </table>
     </section>
   </div>
+  <div id="delete-mask">
+    <div class="comfirm-delete">
+      <div class="delete-icon iconfont">&#xe60a;</div>
+      <div class="hint">
+        <p>提示</p>
+        <p>确认删除该项目吗？</p>
+      </div>
+      <div class="back iconfont">&#xe600;</div>
+      <div class="btn-list">
+        <button class="comfirm">确认</button>
+        <button class="cancel">取消</button>
+      </div>
+    </div>
+  </div>  
 <script src="./ajax.js"></script> 
 <script src="./index.js"></script> 
 </body>

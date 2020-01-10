@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+.no-move {
+  overflow: hidden;
+}
+
 @font-face {
   font-family: 'iconfont';
   src: url('./iconfont/iconfont.eot');
@@ -37,12 +41,11 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
 }
 
 .tasking-title > div {
   position: relative;
-  height: 55%;
+  height: 80px;
   margin: 10px;
   padding: 20px;
   flex-grow: 1;
@@ -109,6 +112,83 @@ body {
   font-size: 32px;
 }
 
+#delete-mask {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+#delete-mask .comfirm-delete {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -75px;
+  margin-left: -170px;
+  width: 340px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.comfirm-delete .delete-icon {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  color: #fec826;
+  font-size: 24px;
+}
+
+.comfirm-delete .hint {
+  position: absolute;
+  top: 30px;
+  left: 60px;
+}
+
+.comfirm-delete p:first-child {
+  line-height: 24px;
+  font-size: 20px;
+  color: #333;
+}
+
+.comfirm-delete p:last-child {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.comfirm-delete .back {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.comfirm-delete .btn-list {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+}
+
+.comfirm-delete .btn-list button {
+  width: 50px;
+  height: 28px;
+  margin: 0 2px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
+  cursor: pointer;
+}
+
+.comfirm-delete .btn-list button:hover {
+  color: #fff;
+  background-color: #3080fe;
+}
+
 .project-list {
   margin: 20px 10px;
   text-align: left;
@@ -120,7 +200,7 @@ body {
 }
 
 .project-list caption {
-  margin: 10px 0 30px 0;
+  margin: 0 0 30px 0;
   font-size: 25px;
   text-align: left;
 }
@@ -148,10 +228,23 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.project-list .ACTIVE {
+  color: #666666;
+}
+
+.project-list .PENDING {
+  color: #ee706d;
+}
+
+.project-list .CLOSED {
+  color: #f7da47;
+}
+
 .project-list .delete {
   padding: 5px 10px;
   border-radius: 3px;
   background-color: #ee706d;
   color: #fff;
   border: 0;
+  cursor: pointer;
 }
