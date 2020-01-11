@@ -36,9 +36,6 @@
   }
 
   function initialProjectList(data) {
-    if (Array.isArray(data) && !data instanceof Array) {
-      return false;
-    }
     $projectTable.innerHTML = data.reduce((acc, cur) => {
       return acc += `<tr data-id="${cur.id}">
                        <td>${cur.name}</td>
