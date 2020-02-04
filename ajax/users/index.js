@@ -65,7 +65,8 @@
         header: {},
         method: "DELETE",
         success: function(res) {
-          deleteItem(res); 
+          deleteItem(res);
+          console.log(res); 
         },
         error: function (error) {
           console.log('error', error);
@@ -97,12 +98,12 @@
     })
 
     function renderUserList(data) {
-        if (Array.isArray(data) && !data instanceof Array) {
-            return false;
-        }
-        $userList.innerHTML = data.reduce((acc, cur) => {
-            return acc += `<li data-id="${cur.id}"><span>用户名：${cur.username} - 密码：${cur.password}</span><span>X</span></li>`;
-        }, '');
+      if (Array.isArray(data) && !data instanceof Array) {
+        return false;
+    }
+    $userList.innerHTML = data.reduce((acc, cur) => {
+        return acc += `<li data-id="${cur.id}"><span>用户名：${cur.username} - 密码：${cur.password}</span><span>X</span></li>`;
+    }, '');
 
     }
 
@@ -121,8 +122,8 @@
     }
 
     function deleteItem(id) {
-        var $item = $userList.querySelector(`li[data-id='${id}']`);
-        $userList.removeChild($item);
+        // var $item = $userList.querySelector(`li[data-id='${id}']`);
+        // $userList.removeChild($item);
     }
 
     getListData();

@@ -3,7 +3,10 @@
   let $projectTable = document.getElementById('project-table');
   let $taskingNumber = document.getElementsByClassName('tasking-number');
   let $taskingPercent = document.getElementsByClassName('tasking-percent');
+  let $projectData = [];
   let deleteId = 0;
+  let $ascBtn = document.getElementsByClassName("asc")[0];
+  let $desBtn = document.getElementsByClassName("des")[0];
 
   function getListData() {
     var options = {
@@ -11,7 +14,8 @@
       header: {},
       method: "GET",
       success: function(res) {
-        initialProjectList(res); 
+        $projectData = res;
+        initialProjectList($projectData); 
       },
       error: function (error) {
         console.log('error', error);
@@ -50,7 +54,12 @@
     projectCount(data);
   }
 
+
+
   function projectCount(data) {
+    $taskingNumber[1].innerHTML = 0;
+    $taskingNumber[2].innerHTML = 0;
+    $taskingNumber[3].innerHTML = 0;
     data.forEach(element => {
       switch(element.status) {
         case "ACTIVE":
@@ -98,6 +107,31 @@
     Array.from($taskingPercent).forEach((element, index) => element.innerHTML
                                          = Math.round($taskingNumber[index + 1].innerHTML / $taskingNumber[0].innerHTML * 100) + "%");
   } 
+
+  function ascProjectList(data) {
+    data.forEach(element => {
+      element.timeNumber = parseInt(element.endTime.split("-").join(""));
+    })
+    data.sort(function(a, b) {
+      return a.timeNumber - b.timeNumber;
+    })
+    initialProjectList(data);
+    $ascBtn.setAttribute("id", "active");
+    $desBtn.setAttribute("id", "unactive");
+  }
+
+  function desProjectList(data) {
+    data.forEach(element => {
+      element.timeNumber = parseInt(element.endTime.split("-").join(""));
+    })
+    data.sort(function(a, b) {
+      return b.timeNumber - a.timeNumber;
+    })
+    initialProjectList(data);
+    console.log($ascBtn)
+    $ascBtn.setAttribute("id", "unactive");
+    $desBtn.setAttribute("id", "active");
+  }
   
   getListData();
   document.addEventListener("click", function(e) {
@@ -115,6 +149,12 @@
       case "comfirm":
         deleteItemData(deleteId);
         break;  
+      case "asc iconfont":
+        ascProjectList($projectData);
+        break;
+      case "des iconfont":
+        desProjectList($projectData);
+        break;
       default:
         console.log(e.target.className)  
     }

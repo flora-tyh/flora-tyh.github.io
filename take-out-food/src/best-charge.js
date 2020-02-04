@@ -1,77 +1,101 @@
 function bestCharge(selectedItems) {
-var allItems = loadAllItems();
-var promotions = loadPromotions();
-var itemSelect = "";
-var sum = 0;
-var sumAfterCutsix = 0;
-var sumAfterHalfCut = 0;
-var halfCutItmes = [];
-var halfCutPrice = 0;
-var totalSum = 0;
-var itemName = [];
-var itemQuantity = [];
-var itemPrice = [];
-var itemId = [];
-
-var selectItemsToList = function(selectItems) {
-  for (let i = 0, len = selectItems.length; i <len; i++) {
-    itemId[i] = selectItems[i].slice(0, 8);
-    for (let j = 0, length = allItems.length; j < length; j++) {
-      if (itemId[i] === allItems[j].id) {
-        itemName[i] = allItems[j].name;
-        itemQuantity[i] = +selectItems[i].slice(11);
-        itemPrice[i] = allItems[j].price;
-      }
-    }    
+  let allItems = loadAllItems();
+  let promotions = loadPromotions();
+  let itemSelect = "";
+  let sum = 0;
+  let sumAfterCutsix = 0;
+  let sumAfterHalfCut = 0;
+  let halfCutItmes = [];
+  let halfCutPrice = 0;
+  let totalSum = 0;
+  let selectQuantity = [];
+  let selectItemPrice = [];
+  let selectId = [];
+  let selectName = [];
+  // ["ITEM0001 x 1", "ITEM0013 x 2", "ITEM0022 x 1"];
+  // allItems = [{
+  //   id: 'ITEM0001',
+  //   name: '黄焖鸡',
+  //   price: 18.00
+  // }, {
+  //   id: 'ITEM0013',
+  //   name: '肉夹馍',
+  //   price: 6.00
+  // }, {
+  //   id: 'ITEM0022',
+  //   name: '凉皮',
+  //   price: 8.00
+  // }, {
+  //   id: 'ITEM0030',
+  //   name: '冰锋',
+  //   price: 2.00
+  // }];
+  // promotions = [{
+  //   type: '满30减6元'
+  // }, {
+  //   type: '指定菜品半价',
+  //   items: ['ITEM0001', 'ITEM0022']
+  // }];
+  function selectItemsToList(data) {
+    data.forEach(selectElment => {
+      selectId.push(selectElment.slice(0, 8))
+      allItems.forEach(item => {
+        if (selectId.indexOf(item.id) === selectId.length - 1) {
+          selectName.push(item.name);
+          selectQuantity.push(+selectElment.slice(11));
+          selectItemPrice.push(item.price);
+        }
+      })
+    })
+    selectName.forEach((element, i) => {
+      itemSelect += `${element} x ${selectQuantity[i]} = ${selectQuantity[i] * selectItemPrice[i]}元\n`;
+      sum += selectQuantity[i] * selectItemPrice[i];
+    })
   }
-  for (let i = 0, len = itemName.length; i < len; i++) {
-    itemSelect += itemName[i] + " x " + itemQuantity[i] + " = " + itemQuantity[i] * itemPrice[i] + "元\n"
-    sum += itemQuantity[i] * itemPrice[i];
+
+  function halfCut() {
+    sumAfterHalfCut = sum;
   }
-}
 
-var cutSix = function() {
-  if (sum >= 30) {
-    return sum - 6;
-  } else {
-    return sum;
-  }
-}
+  selectItemsToList(selectedItems)
 
-var halfCut = function() {
-  sumAfterHalfCut = sum;
-  for (let i = 0, len = itemName.length; i < len; i++) {
-    if (promotions[1].items.indexOf(itemId[i]) !== -1) {
-      sumAfterHalfCut -= itemQuantity[i] * itemPrice[i] / 2;
-      halfCutItmes.push(itemName[i])
-    }
-  }
-  halfCutPrice = sum - sumAfterHalfCut;
-  return sumAfterHalfCut
-}
+  let cutSix = sum >= 30 ? sum - 6 : sum;
 
-selectItemsToList(selectedItems)
-sumAfterCutsix = cutSix();
-sumAfterHalfCut = halfCut();
+  
+  // let halfCut = function() {
+  //   sumAfterHalfCut = sum;
+  //   for (let i = 0, len = itemName.length; i < len; i++) {
+  //     if (promotions[1].items.indexOf(itemId[i]) !== -1) {
+  //       sumAfterHalfCut -= itemQuantity[i] * itemPrice[i] / 2;
+  //       halfCutItmes.push(itemName[i])
+  //     }
+  //   }
+  //   halfCutPrice = sum - sumAfterHalfCut;
+  //   return sumAfterHalfCut
+  // }
 
-if (sumAfterCutsix <= sumAfterHalfCut && sumAfterCutsix < sum) {
-  useCount = "使用优惠:\n"
-             + "满30减6元，省6元\n" 
-             + "-----------------------------------\n";
-  totalSum = sumAfterCutsix;         
-} else if (sumAfterCutsix > sumAfterHalfCut) {
-  useCount = "使用优惠:\n"
-             + "指定菜品半价(" + halfCutItmes.join("，") + ")，省" + halfCutPrice + "元\n" 
-             + "-----------------------------------\n";
-  totalSum = sumAfterHalfCut;    
-} else {
-  useCount = ""
-  totalSum = sum; 
-}
- var countInformation = `============= 订餐明细 =============\n` 
-                        + itemSelect  
-                        + "-----------------------------------\n"
-                        + useCount + "总计：" + totalSum + "元\n"
-                        + `===================================\n`; 
-return countInformation;
+  // selectItemsToList(selectedItems)
+  // sumAfterCutsix = cutSix();
+  // sumAfterHalfCut = halfCut();
+
+  // if (sumAfterCutsix <= sumAfterHalfCut && sumAfterCutsix < sum) {
+  //   useCount = "使用优惠:\n"
+  //             + "满30减6元，省6元\n" 
+  //             + "-----------------------------------\n";
+  //   totalSum = sumAfterCutsix;         
+  // } else if (sumAfterCutsix > sumAfterHalfCut) {
+  //   useCount = "使用优惠:\n"
+  //             + "指定菜品半价(" + halfCutItmes.join("，") + ")，省" + halfCutPrice + "元\n" 
+  //             + "-----------------------------------\n";
+  //   totalSum = sumAfterHalfCut;    
+  // } else {
+  //   useCount = ""
+  //   totalSum = sum; 
+  // }
+  // let countInformation = `============= 订餐明细 =============\n` 
+  //                         + itemSelect  
+  //                         + "-----------------------------------\n"
+  //                         + useCount + "总计：" + totalSum + "元\n"
+  //                         + `===================================\n`; 
+  // return countInformation;
 }

@@ -16,10 +16,10 @@ var creatToDoItem = function(e) {
       if (storage.toDoListData) {
         index = JSON.parse(storage.toDoListData).length;
       }
-      li.innerHTML = "<span>" + index + ".<input type='checkbox'>" + 
+      li.innerHTML = "<span><input type='checkbox'>" + 
                      "<p>" + toDoDes.value + "</P></span>";
       if (add.name === "complete") {
-        li.firstChild.style.display = "none";
+        li.style.display = "none";
       }
       toDoList.appendChild(li);
       li.id = index;
@@ -69,13 +69,13 @@ var selectShowItem = function(e) {
 }
 //获取storage中的数据，初始化列表
 var showList = function(btn) {
+  var storageData = storage.toDoListData;
   if (storage.toDoListData) {
     toDoList.innerHTML = "";
-    for (var i = 0, len = JSON.parse(storage.toDoListData).length - 1; i < len; i++) {
+    for (var i = 0, len = JSON.parse(storageData).length - 1; i < len; i++) {
       var li = document.createElement("li");
-      toDoListJson = JSON.parse(storage.toDoListData);
-      li.innerHTML = "<span class=" + toDoListJson[i+1].checked + ">" 
-                    + toDoListJson[i+1].index + ".<input type='checkbox'"
+      toDoListJson = JSON.parse(storageData);
+      li.innerHTML = "<span class=" + toDoListJson[i+1].checked + "><input type='checkbox'"
                     + toDoListJson[i+1].checked +"><p>" + toDoListJson[i+1].des 
                     + "</p></span>"
       if (btn === "all" || toDoListJson[i+1].checked === btn) {

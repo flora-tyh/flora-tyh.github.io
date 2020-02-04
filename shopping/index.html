@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <h1>文具店购物车</h1>
   <table class="item-table" border="1">
+    <caption>文具店购物车</caption>
     <tbody>
       <tr>
         <th>选择</th>
@@ -19,11 +19,13 @@
         <th>商品数量</th>
         <th>总价（￥）</th>
       </tr>
+    </tbody>
+    <tfoot>
       <tr class="sum-row">
         <td>全选<input class="all-select" type="checkbox"></td>
         <td colspan="4" class="sum"></td>
       </tr>
-    </tbody>
+    </tfoot>    
   </table>
   <script src="./shopping.js"></script>
 </body>

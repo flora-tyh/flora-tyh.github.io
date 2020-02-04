@@ -213,6 +213,22 @@ body {
   border-bottom: 1px solid #DCDEE3;
 }
 
+/* .project-list .asc {
+  color: #3080fe;
+}
+
+.project-list .des {
+  color: #aaa;
+} */
+
+#active {
+  color: #3080fe;
+}
+
+#unactive {
+  color: #aaa;
+}
+
 .project-list th,
 .project-list td {
   height: 70px;
